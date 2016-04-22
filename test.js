@@ -16,6 +16,11 @@ test('buffer', async t => {
 	t.is(stdout.toString(), 'foo');
 });
 
+test('execa.stdout()', async t => {
+	const stdout = await m.stdout('echo', ['foo']);
+	t.is(stdout, 'foo');
+});
+
 test('stdout/stderr available on errors', async t => {
 	const err = await t.throws(m('exit', ['2']));
 	t.is(typeof err.stdout, 'string');

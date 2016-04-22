@@ -106,6 +106,12 @@ module.exports = function (cmd, args, opts) {
 	return promise;
 };
 
+module.exports.stdout = function () {
+	return module.exports.apply(null, arguments).then(function (x) {
+		return x.stdout;
+	});
+};
+
 module.exports.shell = function (cmd, opts) {
 	return handleShell(module.exports, cmd, opts);
 };
